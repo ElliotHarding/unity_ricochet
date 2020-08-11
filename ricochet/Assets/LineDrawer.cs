@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LineDrawer : MonoBehaviour
 {
 	public Camera m_camera;
     public Material m_drawnMaterial;
     public float m_cDrawWidth = 0.1f;
-    public bool m_bDeleteMode = false;
+    public GameObject m_ball;
+    public Vector2 m_initalBallSpeed = new Vector2(0,2);
 
     private bool m_bDrawing = false;
     private LineRenderer m_drawingLineRenderer;
@@ -16,7 +19,7 @@ public class LineDrawer : MonoBehaviour
 
     void Update()
     {
-        if(!m_bDeleteMode)
+        if(b_isToggleDraw && !b_gameInPlay)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -56,7 +59,7 @@ public class LineDrawer : MonoBehaviour
                 m_drawingLineRenderer.SetPosition(1, mousePosition);
             }
         }
-        else
+        else if(!b_gameInPlay)
         {
             if(Input.GetMouseButtonDown(0))
             {
@@ -70,5 +73,48 @@ public class LineDrawer : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            //game is in play
+        }
+    }
+
+    public Button btn_toggleGoReset;
+    public Sprite sprite_go;
+    public Sprite sprite_reset;
+    private bool b_gameInPlay = false;
+    public void toggleGoReset()
+    {
+        if(!b_gameInPlay)
+        {
+            //Start game
+            m_ball.GetComponent<Rigidbody2D>().velocity = m_initalBallSpeed;
+
+            btn_toggleGoReset.image.sprite = sprite_reset;
+            b_gameInPlay = true;
+        }
+        else //Time to edit... game not in play
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+    }
+
+    public Button btn_toggleDrawErase;
+    public Sprite sprite_draw;
+    public Sprite sprite_erase;
+    private bool b_isToggleDraw = true;
+    public void toggleDrawErase()
+    {
+        if(b_isToggleDraw)
+        {
+            btn_toggleDrawErase.image.sprite = sprite_draw;
+            b_isToggleDraw = false;
+        }
+        else
+        {
+            btn_toggleDrawErase.image.sprite = sprite_erase;
+            b_isToggleDraw = true;
+        }
+        
     }
 }

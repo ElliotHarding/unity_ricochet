@@ -3,7 +3,17 @@ guid: 9f4a501f445a4464783f530815a33db3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_camera: {instanceID: 0}
+  - m_drawnMaterial: {instanceID: 0}
+  - btn_toggleGoReset: {fileID: 325600972851571054, guid: e205e26d64627624fb803f91fb658e56,
+      type: 3}
+  - sprite_go: {fileID: 21300000, guid: 4f97570c19a9b3f41829f6ff19d72f5e, type: 3}
+  - sprite_reset: {fileID: 21300000, guid: bab9c9dab0c0088428ff230ee3528b02, type: 3}
+  - btn_toggleDrawErase: {fileID: 317000399707971860, guid: 34748c8e08463da4e855c25bd2d2c791,
+      type: 3}
+  - sprite_draw: {fileID: 21300000, guid: eedee27bb521f254c858ac236fafe02a, type: 3}
+  - sprite_erase: {fileID: 21300000, guid: 93d3b2261b5a7a5438129870c1c29ef5, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
